@@ -1,7 +1,7 @@
 import numpy as np
 from sklearn.linear_model import LinearRegression
 
-from platforms.qiskit import get_qrc_features
+from platforms.my_qiskit import get_qrc_features
 from data.loading.geosphere import load_data_geosphere
 
 # --- BEISPIEL ANWENDUNG ---
