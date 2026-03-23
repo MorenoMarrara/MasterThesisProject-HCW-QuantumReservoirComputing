@@ -29,7 +29,7 @@ def get_qrc_features(input_sequence, n_qubits=4):
     # Wir berechnen hier vereinfacht die Wahrscheinlichkeit, dass ein Qubit '1' ist
     features = np.zeros(n_qubits)
     for bitstring, count in counts.items():
-        for i, bit in enumerate(reversed(bitstring)):  # Qiskit Bit-Order beachten
+        for i, bit in enumerate(reversed(bitstring)):  # my_qiskit Bit-Order beachten
             if bit == '1':
                 features[i] += count
 

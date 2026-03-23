@@ -1,16 +1,19 @@
 import numpy as np
 from sklearn.linear_model import LinearRegression
 
-from my_qiskit.impl import get_qrc_features
+from platforms.qiskit import get_qrc_features
+from data.loading.geosphere import load_data_geosphere
 
 # --- BEISPIEL ANWENDUNG ---
 
 # Beispiel-Daten (X: Zeitreihen-Fenster, y: Zielwert)
-X_raw = [[0.1, 0.2], [0.2, 0.3], [0.3, 0.4]]
-y_train = [0.5, 0.6, 0.7]
+# X_raw = [[0.1, 0.2], [0.2, 0.3], [0.3, 0.4]]
+# y_train = [0.5, 0.6, 0.7]
+
+X_raw, y_train = load_data_geosphere()
 
 # Features durch das Quanten-Reservoir generieren
-X_quantum = np.array([get_qrc_features(seq,3) for seq in X_raw])
+X_quantum = np.array([get_qrc_features(seq,2) for seq in X_raw])
 
 # Klassische Lineare Regression auf den Quanten-Features
 model = LinearRegression()
