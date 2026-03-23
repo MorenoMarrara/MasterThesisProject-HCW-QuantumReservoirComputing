@@ -3,6 +3,8 @@ from src.data.loading.geosphere import Geosphere
 
 
 class TestGeosphere(TestCase):
+    # TODO: add missing test cases
+
     def test_init(self):
         loader = Geosphere()
         assert Geosphere
