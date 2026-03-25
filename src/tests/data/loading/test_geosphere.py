@@ -9,9 +9,9 @@ class TestGeosphere(TestCase):
         loader = Geosphere()
         assert Geosphere
 
-    def test_load(self):
+    def test_load_data_into_memory(self):
         loader = Geosphere()
-        all_data = loader.load_data()
+        all_data = loader.load_data_into_memory()
         assert all_data
 
     def test_load_data_from_file(self):

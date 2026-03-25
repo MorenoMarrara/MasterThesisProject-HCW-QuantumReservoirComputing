@@ -1,4 +1,5 @@
-from exceptions import data_loading_failed_exception
+from pandas import read_csv
+from src.data.loading.my_exceptions import data_loading_failed_exception
 from enum import Enum
 
 class station(Enum):
@@ -8,9 +9,8 @@ class station(Enum):
 
 
 class Geosphere:
-    def __init__(self, loc: station):
-        fileID = "station-{}.csv".format(str(loc.value))
-
+    # def __init__(self, loc: station):
+    #     fileID = "station-{}.csv".format(str(loc.value))
 
     def load_data_into_memory(self):
         try:
@@ -34,5 +34,7 @@ class Geosphere:
 
     def load_data_from_file(self):
         print("Loading data from file")
-        open()
-        return []
+        return read_csv("/home/moreno/Downloads/Messstationen Zehnminutendaten v2 Datensatz_20260301T0000_20260323T2220.csv")
+
+
+print(Geosphere().load_data_into_memory())
