@@ -1,6 +1,10 @@
-from pandas import read_csv
-from src.data.loading.my_exceptions import data_loading_failed_exception
+import os
+
+from pandas import read_csv, concat, DataFrame
 from enum import Enum
+
+from src.data.loading.my_exceptions import data_loading_failed_exception
+from src.data.loading.configs import DEV_DATA_DIR as DDD
 
 class station(Enum):
     station1 = 1
@@ -34,7 +38,11 @@ class Geosphere:
 
     def load_data_from_file(self):
         print("Loading data from file")
-        return read_csv("/home/moreno/Downloads/Messstationen Zehnminutendaten v2 Datensatz_20260301T0000_20260323T2220.csv")
+        files = os.listdir(DDD)
+        data_in_memory = DataFrame()
+        for file in files:
+            data_in_memory = concat([data_in_memory, read_csv(DDD / file)], ignore_index=True)
+        return data_in_memory
 
 
-print(Geosphere().load_data_into_memory())
+# print(Geosphere().load_data_into_memory())
