@@ -14,15 +14,28 @@ from data.loading.geosphere import Geosphere
 # y_train = [0.5, 0.6, 0.7]
 
 data = Geosphere().load_data_into_memory()
-print(data.columns)
-# X_raw, y_train = data["dd", "ddx"], data["pred"]
-#
-# # Features durch das Quanten-Reservoir generieren
-# X_quantum = np.array([get_qrc_features(seq,2) for seq in X_raw])
-#
-# # Klassische Lineare Regression auf den Quanten-Features
-# model = LinearRegression()
-# model.fit(X_quantum, y_train)
-#
-# print("Quanten-Features Shape:", X_quantum.shape)
-# print("Vorhersage für neue Daten:", model.predict(X_quantum[:1]))
+print(data.shape)
+smaller_data = data[:][-10000:-1]
+colnames_no_na = [x for x in smaller_data.columns if not smaller_data[x].isna().any()]
+print(colnames_no_na)
+smaller_data_nona = smaller_data[colnames_no_na]
+smaller_data_nona_ready = (smaller_data[colnames_no_na]
+                           .drop("timestamps", axis=1)
+                           .drop("stationId", axis=1)
+                           .drop("ffam_flag", axis=1)
+                           .drop("tlmax", axis=1)
+                           .drop("tlmin", axis=1))
+
+#X_raw, y_train = smaller_data_nona_ready.drop("tl", axis=1), smaller_data_nona_ready["tl"]
+X_raw, y_train = smaller_data_nona_ready["tl"], smaller_data_nona_ready["tl"]
+
+# Features durch das Quanten-Reservoir generieren
+# TODO: research how many qubits are needed for an optimal representation
+X_quantum = np.array([get_qrc_features(X_raw[seq].to_list(), len(X_raw[seq])) for seq in X_raw])
+
+# Klassische Lineare Regression auf den Quanten-Features
+model = LinearRegression()
+model.fit(X_quantum, y_train)
+
+print("Quanten-Features Shape:", X_quantum.shape)
+print("Vorhersage für neue Daten:", model.predict(X_quantum[:1]))
