@@ -7,6 +7,7 @@ def get_qrc_features(input_sequence, n_qubits=4):
     Wandelt eine Zeitreihe in einen hochdimensionalen Quantenzustand um
     und extrahiert die Erwartungswerte als Features.
     """
+    # TODO: time series?
     print("Doing QRC simulation with Qiskit using {} qubits.".format(n_qubits))
     qc = QuantumCircuit(n_qubits)
 
