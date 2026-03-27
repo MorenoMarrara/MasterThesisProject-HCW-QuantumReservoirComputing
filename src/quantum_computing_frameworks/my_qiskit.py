@@ -1,3 +1,6 @@
+# Qiskit is IBM's quantum computing framework. It provides functionality to simulate quantum computing as well as the
+# real thing.
+
 import numpy as np
 from qiskit import QuantumCircuit
 from qiskit_aer import AerSimulator
