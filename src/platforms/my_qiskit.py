@@ -2,6 +2,9 @@ import numpy as np
 from qiskit import QuantumCircuit
 from qiskit_aer import AerSimulator
 
+# TODO: make this a class "QRC" with one member function "get_features(input_sequence)";
+#       lets me use several algorithmss interchangeably
+
 def get_qrc_features(input_sequence, n_qubits=4):
     """
     Wandelt eine Zeitreihe in einen hochdimensionalen Quantenzustand um
