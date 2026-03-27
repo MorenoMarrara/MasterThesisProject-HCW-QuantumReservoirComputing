@@ -2,7 +2,7 @@ import numpy as np
 from sklearn.linear_model import LinearRegression
 import pandas as pd
 
-from frameworks.my_qiskit import get_qrc_features
+from quantum_computing_frameworks.my_qiskit import get_qrc_features
 from data.loading.utils import load_data_from
 from data.loading.geosphere import Geosphere
 
