@@ -41,9 +41,11 @@ model.fit(QR_output, y_train)
 
 print("Quanten-Features Shape:", QR_output.shape)
 print(QR_output[:1])
-print("Vorhersage für neue Daten:", model.predict(QR_output[:1]))
+print("Vorhersage für neue Daten:", model.predict(QR_output[:-1]))
 
 
-model = build_base_RCModel()
-model.fit(QR_output)
-model.predict(QR_output[:1], [])
+model = build_base_RCModel(3, QR_output.shape[1])
+model.fit(QR_output[:-1])
+print("---------------------")
+print(model.predict(QR_output[:-1], 1))
+

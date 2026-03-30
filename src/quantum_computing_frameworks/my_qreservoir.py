@@ -14,23 +14,19 @@ from sklearn.linear_model import LinearRegression
 #  . reservoir:
 
 # builder function for RC Model
-def build_RCModel(encoder: Encoder,
-                  reservoir: Reservoir = None,
-                  number_of_qubits: int = 1,
-                  number_of_features: int = 1,
-                  ancilla_num: int = 1,
-                  depth: int = 1) \
+def build_RCModel(reservoir: Reservoir = None,
+                  number_of_qubits: int = 1) \
         -> RCModel:
 
     if reservoir is not None:         # create Base RCModel:
-        reservoir = reservoir(encoder(number_of_features), ancilla_num, depth)
         observable = Observable(number_of_qubits)
+        observable.add_operator(1.0, f"Y 0")
         estimator = LinearRegression()
-    return RCModel(reservoir, [observable], estimator)
+        return RCModel(reservoir, [observable], estimator)
+    else:
+        raise Exception("No reservoir provided.")
 
 def build_base_RCModel(number_of_qubits: int = 1,
-                       number_of_features: int = 1,
-                       ancilla_num: int = 1,
-                       depth: int = 1) \
+                       number_of_features: int = 1) \
     -> RCModel:
-    return build_RCModel(CHEEncoder, CNOTReservoir, number_of_qubits, number_of_features, ancilla_num, depth)
+    return build_RCModel(CNOTReservoir(CHEEncoder(number_of_features), number_of_qubits, 1))
