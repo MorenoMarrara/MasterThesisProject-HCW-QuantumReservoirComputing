@@ -5,7 +5,7 @@ import pandas as pd
 from quantum_computing_frameworks.my_qiskit import get_qrc_features
 from data.loading.geosphere import Geosphere
 from src.models.evaluation import evaluate_model
-from src.quantum_computing_frameworks.my_qreservoir import build_base_RCModel
+from src.quantum_computing_frameworks.my_qreservoir import BaseRCModel
 
 data = Geosphere().load_data_into_memory()
 # print(data.shape)
@@ -40,5 +40,5 @@ print("Vorhersage für neue Daten:", model.predict(QR_output[:-1]))
 
 
 print("---------------------")
-model = build_base_RCModel(8, QR_output.shape[1])
+model = BaseRCModel(7, QR_output.shape[1])
 print(evaluate_model(model, QR_output[:-1]))

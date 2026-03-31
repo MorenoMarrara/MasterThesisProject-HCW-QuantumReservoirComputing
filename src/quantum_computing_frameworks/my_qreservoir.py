@@ -13,10 +13,12 @@ from sklearn.linear_model import LinearRegression
 # - start by constructing the RCModel object (multidim input sequences are supported):
 #  . reservoir:
 
-# builder function for RC Model
-def build_base_RCModel(number_of_qubits: int = 1,
-                       number_of_features: int = 1) \
-    -> RCModel:
-    observables = [Observable(number_of_qubits) for _ in range(number_of_features)]
-    [observable.add_operator(1.0, f"I 0") for observable in observables]
-    return RCModel(CNOTReservoir(CHEEncoder(number_of_features), number_of_qubits, 1), observables, LinearRegression())
+class BaseRCModel(RCModel):
+    def __init__(self, number_of_qubits: int = 1, number_of_features: int = 1):
+        observables = [Observable(number_of_qubits) for _ in range(number_of_features)]
+        [observable.add_operator(1.0, f"I 0") for observable in observables]
+
+        super().__init__(CNOTReservoir(CHEEncoder(number_of_features), number_of_qubits, 1),
+                         observables,
+                         LinearRegression()
+        )
