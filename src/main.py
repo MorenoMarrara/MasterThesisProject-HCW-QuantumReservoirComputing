@@ -6,12 +6,6 @@ from quantum_computing_frameworks.my_qiskit import get_qrc_features
 from data.loading.geosphere import Geosphere
 from src.quantum_computing_frameworks.my_qreservoir import build_base_RCModel
 
-# --- BEISPIEL ANWENDUNG ---
-
-# Beispiel-Daten (X: Zeitreihen-Fenster, y: Zielwert)
-# X_raw = [[0.1, 0.2], [0.2, 0.3], [0.3, 0.4]]
-# y_train = [0.5, 0.6, 0.7]
-
 data = Geosphere().load_data_into_memory()
 # print(data.shape)
 smaller_data = data[:][-100:-1]
@@ -44,7 +38,7 @@ print(QR_output[:1])
 print("Vorhersage für neue Daten:", model.predict(QR_output[:-1]))
 
 
-model = build_base_RCModel(3, QR_output.shape[1])
+model = build_base_RCModel(8, QR_output.shape[1])
 model.fit(QR_output[:-1])
 print("---------------------")
 print(model.predict(QR_output[:-1], 1))
