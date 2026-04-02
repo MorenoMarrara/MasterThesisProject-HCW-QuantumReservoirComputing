@@ -18,7 +18,9 @@ class BaseRCModel(RCModel):
         observables = [Observable(number_of_qubits) for _ in range(number_of_features)]
         [observable.add_operator(1.0, f"I 0") for observable in observables]
 
-        super().__init__(CNOTReservoir(CHEEncoder(number_of_features), number_of_qubits, 1),
+        super().__init__(CNOTReservoir(CHEEncoder(number_of_features),
+                                       number_of_qubits,
+                                       1),
                          observables,
                          LinearRegression()
         )
