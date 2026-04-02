@@ -5,7 +5,7 @@ import pandas as pd
 
 from quantum_computing_frameworks.my_qiskit import get_qrc_features
 from data.loading.geosphere import Geosphere
-from src.models.evaluation import evaluate_model
+from src.models.execution import evaluate_model
 from src.quantum_computing_frameworks.my_qreservoir import BaseRCModel
 
 data = Geosphere().load_data_into_memory()
