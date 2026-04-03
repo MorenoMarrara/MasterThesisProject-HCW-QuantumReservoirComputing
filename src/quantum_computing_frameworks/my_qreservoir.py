@@ -1,6 +1,6 @@
 # qreservoir is a simulation framework that is built on the quantum computing simulator qulacs
 # https://pypi.org/project/qulacs/
-from qreservoir.abstract_base_classes import Encoder, Reservoir
+
 from qreservoir.encoders import CHEEncoder
 from qreservoir.models import RCModel
 from qreservoir.reservoirs import CNOTReservoir
