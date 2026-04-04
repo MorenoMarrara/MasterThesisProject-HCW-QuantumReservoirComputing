@@ -1,0 +1,13 @@
+[project]
+name = "project"
+version = "0.1.0"
+description = "Add your description here"
+requires-python = ">=3.11"
+dependencies = [
+    "auto-ts>=0.0.92",
+    "dask[dataframe]<2025.1.0",
+    "numpy>=2.4.4",
+    "pandas>=3.0.2",
+    "qiskit>=2.3.1",
+    "qiskit-aer>=0.17.2",
+]
