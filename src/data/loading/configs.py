@@ -1,6 +1,10 @@
 from pathlib import Path
+import os
 
-DEV_DATA_DIR = Path("/home/moreno/Documents/UNI/FHCampus/SoftwareDesignAndEngineering/Education/Courses/3/DL/Project/ml_pipeline/data_acquisition/Geosphere/data/measurements/107")
-MODEL_DIR = Path("/home/moreno/Documents/UNI/FHCampus/SoftwareDesignAndEngineering/Education/Thesis/Project/models")
+DIR_SRC_UTILS = Path(os.path.dirname(__file__))
+DIR_PROJECT_ROOT = DIR_SRC_UTILS.parent.parent.parent
+
+DEV_DATA_DIR = DIR_PROJECT_ROOT / "data" / "107"
+MODEL_DIR = DIR_PROJECT_ROOT / "models"
 MODEL_DIR_CLASSICAL = MODEL_DIR / "classical"
 MODEL_DIR_QRC = MODEL_DIR / "QRC"
